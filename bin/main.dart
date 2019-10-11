@@ -59,11 +59,9 @@ List uniqueSort(List<int> x) {
 // ]) ➞ 0
 int sumOfEvens(List<List<int>> matrix) {
   int row = matrix.length;
-  int col = matrix[0].length;
-  print("row is $row col is $col");
   int sum = 0;
   for (int i = 0; i < row; i++) {
-    for (int a = 0; a < col; a++) {
+    for (int a = 0; a < matrix[i].length; a++) {
       if (matrix[i][a] % 2 == 0) {
         sum = sum + matrix[i][a];
       }
