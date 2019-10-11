@@ -1,5 +1,19 @@
 main() {
+  print("------challenge 1--------");
+  print(uniqueSort([1, 4, 4, 4, 4, 4, 3, 2, 1, 2]));
+  print("------challenge 2--------");
+  print(sumOfEvens([
+    [1, 0, 2],
+    [5, 5, 7],
+    [9, 4, 3]
+  ]));
+  print(sumOfEvens([
+    [42, 9],
+    [16, 8]
+  ]));
 
+  print("-----challenge 3-----");
+  print(unmix('lPaeesh le pemu mnxit ehess rtnisg!'));
 }
 
 // Challenge 1 - Purge and Organize
@@ -11,6 +25,11 @@ main() {
 // uniqueSort([1, 4, 4, 4, 4, 4, 3, 2, 1, 2]) ➞ [1, 2, 3, 4]
 // uniqueSort([6, 7, 3, 2, 1]) ➞ [1, 2, 3, 6, 7]
 
+List uniqueSort(List<int> x) {
+  List<int> unique = x.toSet().toList();
+  unique.sort();
+  return unique;
+}
 
 // Challenge 2 - Sum of all Even Numbers in a Matrix
 // Create a function that returns the sum of all even elements in a 2D matrix.
@@ -38,7 +57,20 @@ main() {
 //   [],
 //   []
 // ]) ➞ 0
-
+int sumOfEvens(List<List<int>> matrix) {
+  int row = matrix.length;
+  int col = matrix[0].length;
+  print("row is $row col is $col");
+  int sum = 0;
+  for (int i = 0; i < row; i++) {
+    for (int a = 0; a < col; a++) {
+      if (matrix[i][a] % 2 == 0) {
+        sum = sum + matrix[i][a];
+      }
+    }
+  }
+  return sum;
+}
 
 // Challenge 3 - Unmix My Strings
 // 'lPaeesh le pemu mnxit ehess rtnisg!' Oh, sorry, that was supposed to say: Please help me unmix these strings!
@@ -50,3 +82,19 @@ main() {
 // unmix("hTsii  s aimex dpus rtni.g") ➞ "This is a mixed up string."
 //
 // unmix("badce") ➞ "abcde"
+
+String unmix(String sentence) {
+  bool even = sentence.length % 2 == 0;
+  String fixed = "";
+  if (even) {
+    for (int i = 0; i < sentence.length; i = i + 2) {
+      fixed = fixed + sentence[i + 1] + sentence[i];
+    }
+  } else {
+    for (int i = 0; i < sentence.length - 1; i = i + 2) {
+      fixed = fixed + sentence[i + 1] + sentence[i];
+    }
+    fixed = fixed + sentence[sentence.length - 1];
+  }
+  return fixed;
+}
